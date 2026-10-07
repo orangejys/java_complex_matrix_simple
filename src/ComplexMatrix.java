@@ -77,6 +77,18 @@ public class ComplexMatrix {
         return result;
     }
 
+    public ComplexMatrix transpose() {
+        ComplexMatrix result = new ComplexMatrix(columns, rows);
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                result.elements[j][i] = elements[i][j];
+            }
+        }
+
+        return result;
+    }
+
     public String toString() {
         String result = "";
 
