@@ -35,6 +35,21 @@ public class Complex {
         return new Complex(newReal, newImaginary);
     }
 
+    public Complex divide(Complex other) {
+        double znamenatel = other.real * other.real + other.imaginary * other.imaginary;
+
+
+        if (znamenatel == 0){
+            throw new ArithmeticException("На ноль делиьт нельзя!")
+        }
+
+        double newReal = (real * other.real + imaginary * other.imaginary) / znamenatel;
+
+        double newImaginary = (imaginary * other.real - real * other.imaginary) / znamenatel;
+
+        return new Complex(NewReal, NewImaginary)
+    }
+
     public String toString() {
         return real + (imaginary >= 0 ? " + " : " - ")
                 + Math.abs(imaginary) + "i";
