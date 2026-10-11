@@ -50,6 +50,11 @@ public class Complex {
         return new Complex(NewReal, NewImaginary)
     }
 
+    public boolean isZero() {
+        return Math.abs(real) < 0.000000001
+                && Math.abs(imaginary) < 0.000000001;
+    }
+
     public String toString() {
         return real + (imaginary >= 0 ? " + " : " - ")
                 + Math.abs(imaginary) + "i";
