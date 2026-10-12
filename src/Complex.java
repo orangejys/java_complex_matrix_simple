@@ -40,14 +40,14 @@ public class Complex {
 
 
         if (znamenatel == 0){
-            throw new ArithmeticException("На ноль делиьт нельзя!")
+            throw new ArithmeticException("На ноль делить нельзя!");
         }
 
         double newReal = (real * other.real + imaginary * other.imaginary) / znamenatel;
 
         double newImaginary = (imaginary * other.real - real * other.imaginary) / znamenatel;
 
-        return new Complex(NewReal, NewImaginary)
+        return new Complex(NewReal, NewImaginary);
     }
 
     public boolean isZero() {
