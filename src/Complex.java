@@ -47,7 +47,7 @@ public class Complex {
 
         double newImaginary = (imaginary * other.real - real * other.imaginary) / znamenatel;
 
-        return new Complex(NewReal, NewImaginary);
+        return new Complex(newReal, newImaginary);
     }
 
     public boolean isZero() {
