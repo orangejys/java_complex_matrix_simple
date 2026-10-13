@@ -55,6 +55,10 @@ public class Complex {
                 && Math.abs(imaginary) < 0.000000001;
     }
 
+    public double SquaredElement() {
+        return real * real + imaginary * imaginary;
+    }
+
     public String toString() {
         return real + (imaginary >= 0 ? " + " : " - ")
                 + Math.abs(imaginary) + "i";

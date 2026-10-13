@@ -22,5 +22,6 @@ public class Test {
 
         System.out.println("Проверка A * A^-1:");
         System.out.println(matrix.multiply(inverse));
+
     }
 }
