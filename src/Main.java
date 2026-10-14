@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
+        ComplexMatrix lastResult = null;
 
         while (running) {
             printMenu();
@@ -13,33 +14,31 @@ public class Main {
                 if (choice == 0) {
                     running = false;
                 } else if (choice == 5) {
-                    ComplexMatrix matrix = readMatrix(scanner, "матрицу");
+                    ComplexMatrix matrix = chooseMatrix(scanner, lastResult, "матрицу");
+                    lastResult = matrix.transpose();
 
                     System.out.println("Результат:");
-                    System.out.println(matrix.transpose());
+                    System.out.println(lastResult);
                 } else if (choice == 6) {
-                    ComplexMatrix matrix = readMatrix(scanner, "матрицу");
+                    ComplexMatrix matrix = chooseMatrix(scanner, lastResult, "матрицу");
 
                     System.out.println("Определитель: " + matrix.determinant());
                 } else if (choice >= 1 && choice <= 4) {
-                    ComplexMatrix first = readMatrix(scanner, "первую матрицу");
-
+                    ComplexMatrix first = chooseMatrix(scanner, lastResult, "первую матрицу");
                     ComplexMatrix second = readMatrix(scanner, "вторую матрицу");
 
-                    ComplexMatrix result;
-
                     if (choice == 1) {
-                        result = first.add(second);
+                        lastResult = first.add(second);
                     } else if (choice == 2) {
-                        result = first.subtract(second);
+                        lastResult = first.subtract(second);
                     } else if (choice == 3) {
-                        result = first.multiply(second);
+                        lastResult = first.multiply(second);
                     } else {
-                        result = first.divide(second);
+                        lastResult = first.divide(second);
                     }
 
                     System.out.println("Результат:");
-                    System.out.println(result);
+                    System.out.println(lastResult);
                 } else {
                     System.out.println("Неизвестная операция");
                 }
@@ -60,6 +59,25 @@ public class Main {
         System.out.println("6 — определитель");
         System.out.println("0 — выход");
         System.out.print("Выберите операцию: ");
+    }
+
+    private static ComplexMatrix chooseMatrix(
+            Scanner scanner,
+            ComplexMatrix lastResult,
+            String name
+    ) {
+        if (lastResult != null) {
+            System.out.println("Использовать результат предыдущей операции?");
+            System.out.println("1 — да");
+            System.out.println("0 — нет");
+            System.out.print("Ваш выбор: ");
+
+            if (scanner.nextInt() == 1) {
+                return lastResult;
+            }
+        }
+
+        return readMatrix(scanner, name);
     }
 
     private static ComplexMatrix readMatrix(Scanner scanner, String name) {
